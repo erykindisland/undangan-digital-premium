@@ -74,12 +74,14 @@ rsvpForm.addEventListener('submit', (e) => {
     statusMsg.innerText = 'Tunggu sebentar sedang mengirim...';
 
     const formData = new FormData(rsvpForm);
+    const params = new URLSearchParams(formData);
     
     fetch(SCRIPT_URL, {
         method: 'POST',
-        body: formData
+        body: params,
+        mode: 'no-cors' // Penting untuk bypass CORS policy Google Apps Script
     })
-    .then(response => {
+    .then(() => {
         statusMsg.innerText = 'Terima kasih atas konfirmasinya!';
         rsvpForm.reset();
         submitBtn.disabled = false;
