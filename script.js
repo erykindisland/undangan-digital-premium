@@ -59,7 +59,7 @@ const statusMsg = document.getElementById('status');
 const submitBtn = document.getElementById('submitBtn');
 
 // GANTI URL INI nanti dengan URL Web App dari Google Apps Script
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_WA_rXxbQuaT2pUS1aoLRxZ7gkjJZNA1Kk0U5lxJAdX-5XUYtViLCfB7Xoii-2xI7cA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzltb_vNaruIsoj0wE29INabGgEV6yyEjxKWGeckHQdyCYUnbzQWNq-GKkbntRi6lFo3A/exec';
 
 rsvpForm.addEventListener('submit', (e) => {
     e.preventDefault();
