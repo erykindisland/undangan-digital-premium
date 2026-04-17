@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayyan & Sofia - Undangan Digital Islami</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        minimal: {
+                            bg: '#FAF9F6',
+                            accent: '#C2B280',
+                            text: '#2C2C2C',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .minimal-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .glass-minimal {
+            background: rgba(250, 249, 246, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(194, 178, 128, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-minimal-bg text-minimal-text font-sans selection:bg-minimal-accent selection:text-white">
+    <script>const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwvGu9iWHhgXN5nnk80F0m9x5xNKRADKBx6QDcbEoU6gCIsZEOuXRdYxZWAnPdHy1QzGQ/exec";</script>
+    <div id="app">
+        <!-- HERO -->
+        <section class="h-screen w-full relative flex items-center justify-center minimal-parallax" style="background-image: url('assets/minimalist.png');">
+            <div class="absolute inset-0 bg-white/20"></div>
+            <div class="relative z-10 text-center space-y-8" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-[1em] text-minimal-text/60">Walimatul 'Ursy</span>
+                <h1 class="text-5xl md:text-8xl font-serif italic text-minimal-text">
+                    <span id="view-GroomName">Rayyan</span> <br> 
+                    <span class="text-2xl font-sans not-italic block my-4">DAN</span> 
+                    <span id="view-BrideName">Sofia</span>
+                </h1>
+                <p id="view-Date" class="text-lg tracking-widest font-light">SABTU, 24 MEI 2026</p>
+                <button onclick="document.getElementById('content').scrollIntoView()" class="mt-12 px-12 py-4 border border-minimal-text text-xs tracking-widest hover:bg-minimal-text hover:text-white transition-all duration-500 uppercase">Buka Undangan</button>
+            </div>
+        </section>
+
+        <!-- CONTENT -->
+        <main id="content" class="max-w-4xl mx-auto px-6 py-32 space-y-64">
+            <!-- INTRO -->
+            <section class="text-center space-y-12" data-aos="fade-up">
+                <h2 class="text-3xl font-serif italic italic text-minimal-accent">Ar-Rum: 21</h2>
+                <p class="text-lg font-light leading-relaxed max-w-xl mx-auto italic">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."</p>
+            </section>
+
+            <!-- DETAILS -->
+            <section class="grid md:grid-cols-2 gap-24 border-y border-minimal-accent/20 py-24">
+                <div class="space-y-6" data-aos="fade-right">
+                    <h3 class="text-2xl font-serif">Akad Nikah</h3>
+                    <p id="view-Time" class="text-sm tracking-widest opacity-60">08:00 WIB</p>
+                    <p id="view-LocationName" class="text-sm leading-relaxed">Masjid Agung Al-Azhar, Jakarta Selatan</p>
+                </div>
+                <div class="space-y-6" data-aos="fade-left">
+                    <h3 class="text-2xl font-serif">Resepsi Pernikahan</h3>
+                    <p class="text-sm tracking-widest opacity-60">11:00 WIB - 13:00 WIB</p>
+                    <p class="text-sm leading-relaxed">Aula Serbaguna Al-Azhar</p>
+                </div>
+            </section>
+
+            <!-- GALLERY -->
+            <section class="space-y-12">
+                <h2 class="text-4xl font-serif text-center">Momen Berbahagia</h2>
+                <div id="view-GalleryContainer" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+            </section>
+
+            <!-- RSVP -->
+            <section class="glass-minimal p-12 md:p-24 text-center space-y-12 rounded-sm" data-aos="zoom-in">
+                <h2 class="text-4xl font-serif">Maukah Anda Datang?</h2>
+                <form id="rsvpForm" class="max-w-md mx-auto space-y-8">
+                    <input type="text" id="rsvp-name" placeholder="Nama Lengkap" required class="w-full bg-transparent border-b border-minimal-text py-2 outline-none text-center">
+                    <select id="rsvp-attendance" class="w-full bg-transparent border-b border-minimal-text py-2 outline-none text-center">
+                        <option value="Hadir">Insya Allah Hadir</option>
+                        <option value="Tidak Hadir">Mohon Maaf Tidak Bisa</option>
+                    </select>
+                    <button type="submit" class="w-full bg-minimal-text text-white py-4 text-xs tracking-widest uppercase hover:bg-minimal-accent transition-all">Kirim Konfirmasi</button>
+                </form>
+            </section>
+        </main>
+
+        <footer class="py-24 text-center opacity-40 text-[10px] tracking-[0.5em] uppercase">
+            &copy; 2026 Crafted by Lukas & Elena
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ duration: 1200, once: true });
+            const toSlug = new URLSearchParams(window.location.search).get('to');
+            if (toSlug) fetchData(toSlug);
+        });
+
+        async function fetchData(slug) {
+            const res = await fetch(`${GAS_API_URL}?to=${slug}`);
+            const r = await res.json();
+            if (r.success) {
+                const d = r.data;
+                document.getElementById('view-GroomName').innerText = d.GroomName;
+                document.getElementById('view-BrideName').innerText = d.BrideName;
+                document.getElementById('view-Date').innerText = d.Date;
+                document.getElementById('view-Time').innerText = d.Time;
+                document.getElementById('view-LocationName').innerText = d.LocationName;
+                const urls = d.GalleryURLs.split(',').map(u=>u.trim()).filter(u=>u);
+                document.getElementById('view-GalleryContainer').innerHTML = urls.map(u=>`
+                    <div class="aspect-square overflow-hidden bg-gray-100">
+                        <img src="${u}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>

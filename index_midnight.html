@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reza & Farrah - Undangan Digital Midnight Luxury</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: {
+                            deep: '#0B0E14',
+                            gold: '#D4AF37',
+                            starlight: '#F8F8FF'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .star-glow { text-shadow: 0 0 10px rgba(248, 248, 255, 0.8), 0 0 20px rgba(212, 175, 55, 0.5); }
+        .gold-border { border: 1px solid rgba(212, 175, 55, 0.3); }
+        .radial-midnight { background: radial-gradient(circle at center, #1A202C 0%, #0B0E14 100%); }
+    </style>
+</head>
+<body class="bg-midnight-deep text-midnight-starlight font-serif overflow-x-hidden">
+    <script>const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwvGu9iWHhgXN5nnk80F0m9x5xNKRADKBx6QDcbEoU6gCIsZEOuXRdYxZWAnPdHy1QzGQ/exec";</script>
+    
+    <!-- STARFIELD BG -->
+    <div class="fixed inset-0 z-0 bg-[url('assets/midnight.png')] bg-cover bg-center opacity-40"></div>
+
+    <div class="relative z-10">
+        <!-- HERO -->
+        <section class="h-screen flex items-center justify-center p-6 text-center">
+            <div class="space-y-6" data-aos="zoom-out">
+                <p class="font-cinzel tracking-[1em] text-xs text-midnight-gold">Walimatul 'Ursy</p>
+                <h1 class="text-7xl md:text-9xl font-cinzel star-glow">
+                    <span id="view-GroomName">REZA</span> <br> 
+                    <span class="text-3xl text-midnight-gold">&</span> <br> 
+                    <span id="view-BrideName">FARRAH</span>
+                </h1>
+                <p id="view-Date" class="text-xl tracking-widest mt-8 font-cinzel">12 . 12 . 2026</p>
+            </div>
+        </section>
+
+        <!-- CONTENT -->
+        <main class="max-w-4xl mx-auto px-6 space-y-48 pb-32">
+            <!-- QUOTE -->
+            <section class="text-center italic text-xl font-light" data-aos="fade-up">
+                Assalamu'alaikum Warahmatullahi Wabarakatuh. <br><br>
+                "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang." <br> (QS. Ar-Rum: 21)
+            </section>
+
+            <!-- CARDS -->
+            <section class="grid md:grid-cols-2 gap-8">
+                <div class="radial-midnight p-12 gold-border rounded-tl-[4rem] rounded-br-[4rem] group hover:border-midnight-gold transition-all" data-aos="fade-right">
+                    <h3 class="font-cinzel text-midnight-gold text-2xl mb-6">AKAD NIKAH</h3>
+                    <div class="space-y-4 text-sm tracking-widest leading-relaxed">
+                        <p id="view-Time">19:00 WIB</p>
+                        <p id="view-LocationName">The Dharmawangsa, Jakarta Selatan</p>
+                    </div>
+                </div>
+                <div class="radial-midnight p-12 gold-border rounded-tr-[4rem] rounded-bl-[4rem] group hover:border-midnight-gold transition-all" data-aos="fade-left">
+                    <h3 class="font-cinzel text-midnight-gold text-2xl mb-6">RESEPSI</h3>
+                    <div class="space-y-4 text-sm tracking-widest leading-relaxed">
+                        <p>20:00 WIB - SELESAI</p>
+                        <p>Grand Ballroom, The Dharmawangsa</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GALLERY -->
+            <section class="space-y-12">
+                <h2 class="font-cinzel text-center text-4xl tracking-widest">GALACTIC GALLERY</h2>
+                <div id="view-GalleryContainer" class="grid grid-cols-2 md:grid-cols-4 gap-2"></div>
+            </section>
+
+            <!-- RSVP -->
+            <section class="max-w-xl mx-auto text-center space-y-12" data-aos="flip-down">
+                <div class="h-px bg-midnight-gold w-32 mx-auto"></div>
+                <h2 class="font-cinzel text-4xl star-glow">AKANKAH ANDA MENJADI SAKSI KAMI?</h2>
+                <form id="rsvpForm" class="space-y-8">
+                    <input type="text" id="rsvp-name" placeholder="NAMA TAMU" required class="w-full bg-transparent border-b border-midnight-gold py-4 outline-none text-center font-cinzel text-sm tracking-widest">
+                    <div class="flex justify-center gap-12 text-xs font-cinzel tracking-widest">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="attendance" value="Hadir" checked class="accent-midnight-gold"> HADIR
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-gray-500">
+                            <input type="radio" name="attendance" value="Tidak Hadir" class="accent-midnight-gold"> TIDAK HADIR
+                        </label>
+                    </div>
+                    <button type="submit" class="w-full bg-midnight-gold text-midnight-deep font-cinzel font-bold py-5 hover:bg-white transition-all tracking-[0.3em]">KONFIRMASI KEHADIRAN</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ duration: 1500 });
+            const toSlug = new URLSearchParams(window.location.search).get('to');
+            if (toSlug) fetchData(toSlug);
+        });
+        async function fetchData(slug) {
+            const res = await fetch(`${GAS_API_URL}?to=${slug}`);
+            const r = await res.json();
+            if (r.success) {
+                const d = r.data;
+                document.getElementById('view-GroomName').innerText = d.GroomName;
+                document.getElementById('view-BrideName').innerText = d.BrideName;
+                document.getElementById('view-Date').innerText = d.Date.replace(/\d{4}/, (m) => ". "+m+" .");
+                document.getElementById('view-Time').innerText = d.Time;
+                document.getElementById('view-LocationName').innerText = d.LocationName;
+                const urls = d.GalleryURLs.split(',').map(u=>u.trim()).filter(u=>u);
+                document.getElementById('view-GalleryContainer').innerHTML = urls.map(u=>`
+                    <div class="aspect-[2/3] overflow-hidden gold-border p-1">
+                        <img src="${u}" class="w-full h-full object-cover filter brightness-75 hover:brightness-110 transition duration-1000">
+                    </div>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>

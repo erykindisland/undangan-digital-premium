@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf & Zulaikha - Undangan Digital Islami Tropical</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tropics: {
+                            green: '#2D5A27',
+                            aqua: '#40E0D0',
+                            sand: '#FFF8DC',
+                            leaf: '#ACE1AF'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['League Spartan', 'sans-serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-tropics-sand text-tropics-green font-sans">
+    <script>const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwvGu9iWHhgXN5nnk80F0m9x5xNKRADKBx6QDcbEoU6gCIsZEOuXRdYxZWAnPdHy1QzGQ/exec";</script>
+    
+    <!-- HERO -->
+    <section class="h-[80vh] flex items-end p-12 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="assets/tropical.png" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 bg-white/90 p-10 md:p-20 max-w-4xl rounded-tr-[10rem] shadow-2xl" data-aos="fade-up">
+            <h2 class="font-heading uppercase tracking-[0.5em] text-xs mb-4">Maha Suci Allah</h2>
+            <h1 class="font-heading text-6xl md:text-8xl font-bold leading-tight">
+                <span id="view-GroomName">YUSUF</span> <br> 
+                <span class="text-tropics-aqua">&</span> <br> 
+                <span id="view-BrideName">ZULAIKHA</span>
+            </h1>
+            <p id="view-Date" class="text-2xl font-light mt-8 tracking-widest">20 JULI 2026</p>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <main class="py-32 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-32">
+        <section class="space-y-12" data-aos="fade-right">
+            <div class="h-2 w-24 bg-tropics-aqua"></div>
+            <h2 class="font-heading text-5xl font-bold">Ibadah Sepanjang Hayat</h2>
+            <p class="text-xl leading-relaxed font-light">Assalamu'alaikum Warahmatullahi Wabarakatuh. Dengan memohon rahmat Allah, kami bermaksud mengundang Bapak/Ibu ke acara pernikahan kami.</p>
+            
+            <div class="space-y-8 pt-12">
+                <div class="flex items-start gap-6">
+                    <i class="fas fa-mosque text-3xl text-tropics-aqua"></i>
+                    <div>
+                        <h4 class="font-bold text-xl mb-2">Akad & Resepsi</h4>
+                        <p id="view-Time" class="opacity-70">16:30 WITA</p>
+                        <p id="view-LocationName" class="font-semibold">Masjid Terapung, Makassar</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-12" data-aos="fade-up">
+            <div id="view-GalleryContainer" class="columns-2 gap-4 space-y-4"></div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="col-span-full bg-tropics-green text-white p-12 md:p-24 rounded-3xl flex flex-col md:flex-row items-center gap-16" data-aos="zoom-out">
+            <div class="md:w-1/2">
+                <h2 class="font-heading text-6xl font-bold mb-6">Barakallah!</h2>
+                <p class="text-tropics-leaf text-xl leading-relaxed">Kami sangat menantikan kehadiran Anda. Mohon konfirmasi kehadiran Anda sebelum tanggal 1 Juni.</p>
+            </div>
+            <form id="rsvpForm" class="md:w-1/2 w-full space-y-6">
+                <input type="text" id="rsvp-name" placeholder="SIAPA YANG AKAN DATANG?" required class="w-full bg-white/10 border-2 border-tropics-leaf/30 p-4 rounded-xl outline-none focus:border-tropics-aqua">
+                <select id="rsvp-attendance" class="w-full bg-white/10 border-2 border-tropics-leaf/30 p-4 rounded-xl outline-none">
+                    <option value="Hadir">SAYA AKAN HADIR!</option>
+                    <option value="Tidak Hadir">MOHON MAAF, TIDAK BISA</option>
+                </select>
+                <button type="submit" class="w-full bg-tropics-aqua text-tropics-green font-heading font-bold py-5 rounded-xl shadow-[0_10px_0_0_#2d5a27] hover:translate-y-1 hover:shadow-none transition-all">RESERVASI TEMPAT SAYA</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="p-20 text-center font-heading font-bold uppercase tracking-widest opacity-20">
+        Jazakumullah Khairan &middot; 2026
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ duration: 1000 });
+            const toSlug = new URLSearchParams(window.location.search).get('to');
+            if (toSlug) fetchData(toSlug);
+        });
+        async function fetchData(slug) {
+            const res = await fetch(`${GAS_API_URL}?to=${slug}`);
+            const r = await res.json();
+            if (r.success) {
+                const d = r.data;
+                document.getElementById('view-GroomName').innerText = d.GroomName;
+                document.getElementById('view-BrideName').innerText = d.BrideName;
+                document.getElementById('view-Date').innerText = d.Date;
+                document.getElementById('view-Time').innerText = d.Time;
+                document.getElementById('view-LocationName').innerText = d.LocationName;
+                const urls = d.GalleryURLs.split(',').map(u=>u.trim()).filter(u=>u);
+                document.getElementById('view-GalleryContainer').innerHTML = urls.map(u=>`
+                    <img src="${u}" class="w-full h-auto rounded-xl hover:scale-95 transition">
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>

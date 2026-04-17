@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan & Aisyah - Undangan Digital Islami Royal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;500&family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sakura: {
+                            petal: '#FED7E2',
+                            bloom: '#F687B3',
+                            leaf: '#C6F6D5',
+                            wash: '#FFF5F7'
+                        }
+                    },
+                    fontFamily: {
+                        jp: ['Noto Serif JP', 'serif'],
+                        script: ['Parisienne', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sakura-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        .text-vertical { writing-mode: vertical-rl; }
+    </style>
+</head>
+<body class="bg-sakura-wash text-gray-700 font-jp">
+    <script>const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwvGu9iWHhgXN5nnk80F0m9x5xNKRADKBx6QDcbEoU6gCIsZEOuXRdYxZWAnPdHy1QzGQ/exec";</script>
+    
+    <!-- HERO -->
+    <section class="h-screen relative flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 sakura-parallax opacity-60 bg-[url('assets/sakura.png')]"></div>
+        
+        <div class="relative z-10 flex flex-col md:flex-row items-center gap-12" data-aos="fade-in">
+            <div class="text-vertical text-sakura-bloom font-medium border-l border-sakura-bloom/30 pl-4 py-8 text-sm tracking-[0.5em]">
+                Walimatul 'Ursy
+            </div>
+            <div class="text-center">
+                <h1 class="font-script text-7xl md:text-9xl text-sakura-bloom mb-4">
+                    <span id="view-GroomName">Sultan</span> & <span id="view-BrideName">Aisyah</span>
+                </h1>
+                <p id="view-Date" class="text-xl tracking-[0.4em] font-light">15 . 04 . 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <main class="max-w-5xl mx-auto px-6 py-32 space-y-48">
+        <section class="text-center max-w-2xl mx-auto" data-aos="fade-up">
+            <p class="text-2xl leading-relaxed italic font-light">Assalamu'alaikum Warahmatullahi Wabarakatuh. "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri..."</p>
+        </section>
+
+        <!-- EVENT DETAILS -->
+        <section class="grid md:grid-cols-3 gap-12 items-center">
+            <div class="md:col-span-2 space-y-12" data-aos="fade-right">
+                <div class="border-l-4 border-sakura-bloom pl-8 py-4">
+                    <h2 class="text-4xl font-medium mb-4">Akad Nikah</h2>
+                    <p id="view-Time" class="text-sakura-bloom font-bold mb-2">08:00 WIB</p>
+                    <p id="view-LocationName" class="text-lg leading-relaxed">Masjid Agung Jawa Tengah, Semarang</p>
+                </div>
+                <div class="border-l-4 border-sakura-petal pl-8 py-4">
+                    <h2 class="text-4xl font-medium mb-4">Resepsi Pernikahan</h2>
+                    <p class="text-sakura-bloom font-bold mb-2">11:00 WIB</p>
+                    <p class="text-lg leading-relaxed">Convention Hall MAJT</p>
+                </div>
+            </div>
+            <div class="relative group" data-aos="zoom-in">
+                <div class="absolute -inset-4 bg-sakura-petal rounded-full blur-2xl opacity-50"></div>
+                <img src="assets/sakura.png" class="relative rounded-full aspect-square object-cover border-8 border-white">
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="space-y-16">
+            <h2 class="font-script text-6xl text-center text-sakura-bloom">Momen Kebahagiaan</h2>
+            <div id="view-GalleryContainer" class="grid grid-cols-2 md:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="bg-white p-12 md:p-24 rounded-[3rem] shadow-xl border border-sakura-petal/30" data-aos="fade-up">
+            <div class="text-center mb-16">
+                <h3 class="font-script text-5xl text-sakura-bloom mb-4">Konfirmasi</h3>
+                <p class="text-sm tracking-widest opacity-60">Dengan hormat, kami menanti kehadiran Anda</p>
+            </div>
+            <form id="rsvpForm" class="max-w-xl mx-auto space-y-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <input type="text" id="rsvp-name" placeholder="NAMA LENGKAP" required class="bg-transparent border-b border-sakura-petal py-3 outline-none w-full focus:border-sakura-bloom">
+                    <select id="rsvp-attendance" class="bg-transparent border-b border-sakura-petal py-3 outline-none w-full focus:border-sakura-bloom">
+                        <option value="Hadir">YA, SAYA AKAN HADIR</option>
+                        <option value="Tidak Hadir">MAAF, TIDAK BISA HADIR</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-sakura-bloom text-white font-bold py-5 rounded-full shadow-lg hover:bg-sakura-petal hover:text-sakura-bloom transition-all tracking-widest uppercase">Kirim Jawaban</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="py-24 text-center text-xs tracking-[0.5em] text-sakura-bloom/50">
+        ETERNITY &middot; MMXXVI
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ duration: 1200 });
+            const toSlug = new URLSearchParams(window.location.search).get('to');
+            if (toSlug) fetchData(toSlug);
+        });
+        async function fetchData(slug) {
+            const res = await fetch(`${GAS_API_URL}?to=${slug}`);
+            const r = await res.json();
+            if (r.success) {
+                const d = r.data;
+                document.getElementById('view-GroomName').innerText = d.GroomName;
+                document.getElementById('view-BrideName').innerText = d.BrideName;
+                document.getElementById('view-Date').innerText = d.Date;
+                document.getElementById('view-Time').innerText = d.Time;
+                document.getElementById('view-LocationName').innerText = d.LocationName;
+                const urls = d.GalleryURLs.split(',').map(u=>u.trim()).filter(u=>u);
+                document.getElementById('view-GalleryContainer').innerHTML = urls.map(u=>`
+                    <div class="aspect-[4/5] rounded-t-full overflow-hidden border-4 border-sakura-wash">
+                        <img src="${u}" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-700">
+                    </div>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>

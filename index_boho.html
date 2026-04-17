@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimas & Annisa - Undangan Digital Boho Rustic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        boho: {
+                            earth: '#BC8F8F',
+                            sand: '#F5DEB3',
+                            leaf: '#8FBC8F',
+                            paper: '#FDF5E6'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Crimson Pro', 'serif'],
+                        script: ['Great Vibes', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-boho-paper text-gray-800 font-serif">
+    <script>const GAS_API_URL = "https://script.google.com/macros/s/AKfycbwvGu9iWHhgXN5nnk80F0m9x5xNKRADKBx6QDcbEoU6gCIsZEOuXRdYxZWAnPdHy1QzGQ/exec";</script>
+    <!-- HERO -->
+    <section class="min-h-screen flex flex-col items-center justify-center relative p-6 text-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="assets/boho.png" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 space-y-4" data-aos="zoom-in">
+            <h2 class="font-script text-5xl text-boho-earth">Walimatul 'Ursy</h2>
+            <h1 class="text-7xl md:text-9xl font-light">
+                <span id="view-GroomName">Dimas</span> & <span id="view-BrideName">Annisa</span>
+            </h1>
+            <p id="view-Date" class="text-xl tracking-[0.2em] italic">Sabtu, 12 September 2026</p>
+            <div class="pt-10">
+                <button onclick="document.getElementById('story').scrollIntoView()" class="bg-boho-earth text-white px-10 py-3 rounded-full shadow-lg hover:bg-opacity-80 transition">Buka Undangan</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div id="story" class="max-w-3xl mx-auto px-6 py-32 space-y-32">
+        <section class="text-center" data-aos="fade-up">
+            <i class="fas fa-feather-pointed text-boho-earth text-3xl mb-8"></i>
+            <p class="text-2xl italic leading-relaxed">Assalamu'alaikum Warahmatullahi Wabarakatuh. "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri..." (Ar-Rum: 21)</p>
+        </section>
+
+        <!-- EVENT CARD -->
+        <section class="bg-white/60 p-12 rounded-3xl border-2 border-dashed border-boho-earth/20 text-center" data-aos="fade-up">
+            <h3 class="font-script text-5xl text-boho-earth mb-8">Hari Bahagia Kami</h3>
+            <div class="space-y-4">
+                <p id="view-Date2" class="text-xl font-bold">Sabtu, 12 Sept 2026</p>
+                <p id="view-Time" class="opacity-70">Dimulai pukul 16:00 WIB</p>
+                <div class="h-px w-24 bg-boho-earth mx-auto my-6"></div>
+                <p id="view-LocationName" class="italic">Hutan Pinus Sentul, Bogor, Jawa Barat</p>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="space-y-8">
+            <h2 class="font-script text-6xl text-center text-boho-earth">Galeri Kami</h2>
+            <div id="view-GalleryContainer" class="grid grid-cols-2 gap-4"></div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="bg-boho-earth text-white p-12 rounded-[3rem] shadow-2xl" data-aos="flip-up">
+            <div class="text-center mb-10">
+                <h2 class="font-script text-5xl mb-4">Konfirmasi Kehadiran</h2>
+                <p class="text-sm opacity-80 italic">Mohon konfirmasi sebelum akhir Agustus</p>
+            </div>
+            <form id="rsvpForm" class="space-y-6">
+                <input type="text" id="rsvp-name" placeholder="Nama Anda" required class="w-full bg-white/20 border-b border-white py-3 outline-none placeholder:text-white/60">
+                <select id="rsvp-attendance" class="w-full bg-transparent border-b border-white py-3 outline-none">
+                    <option value="Hadir">Dengan Senang Hati Hadir</option>
+                    <option value="Tidak Hadir">Mohon Maaf Tidak Bisa</option>
+                </select>
+                <button type="submit" class="w-full bg-white text-boho-earth font-bold py-4 rounded-full">KIRIM KONFIRMASI</button>
+            </form>
+        </section>
+    </div>
+
+    <footer class="py-20 text-center text-xs tracking-widest text-boho-earth uppercase">
+        Dengan Cinta, D & A
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ duration: 1500 });
+            const toSlug = new URLSearchParams(window.location.search).get('to');
+            if (toSlug) fetchData(toSlug);
+        });
+        async function fetchData(slug) {
+            const res = await fetch(`${GAS_API_URL}?to=${slug}`);
+            const r = await res.json();
+            if (r.success) {
+                const d = r.data;
+                document.querySelectorAll('#view-GroomName').forEach(el=>el.innerText = d.GroomName);
+                document.querySelectorAll('#view-BrideName').forEach(el=>el.innerText = d.BrideName);
+                document.getElementById('view-Date').innerText = d.Date;
+                document.getElementById('view-Date2').innerText = d.Date;
+                document.getElementById('view-Time').innerText = d.Time;
+                document.getElementById('view-LocationName').innerText = d.LocationName;
+                const urls = d.GalleryURLs.split(',').map(u=>u.trim()).filter(u=>u);
+                document.getElementById('view-GalleryContainer').innerHTML = urls.map(u=>`
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-inner">
+                        <img src="${u}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>

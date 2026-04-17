@@ -1,0 +1,191 @@
+/**
+ * BACKUP: Google Apps Script for Dynamic Wedding Invitation
+ * Copy this code into your Google Apps Script Editor (Extensions > Apps Script)
+ * 
+ * Deployment Instructions:
+ * 1. Click 'Deploy' > 'New Deployment'
+ * 2. Select 'Web App'
+ * 3. Execute As: 'Me' (Your Google Account)
+ * 4. Who has access: 'Anyone'
+ * 5. Update GAS_API_URL in index.html with the new URL provided after deployment.
+ */
+
+const SHEET_NAME = 'Customers';
+
+function doGet(e) {
+  const slug = e.parameter.to;
+  const action = e.parameter.action;
+  
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME) || setupSheet();
+
+  const data = sheet.getDataRange().getValues();
+  const fixedKeys = ['Slug', 'GroomName', 'BrideName', 'Date', 'Time', 'LocationName', 'MapURL', 'GalleryURLs', 'MusicURL', 'RSVPData', 'Status'];
+
+  if (action === 'get_all') {
+    const allList = [];
+    for (let i = 1; i < data.length; i++) {
+        const rowObj = {};
+        fixedKeys.forEach((key, idx) => {
+            rowObj[key] = data[i][idx] || '';
+        });
+        allList.push(rowObj);
+    }
+    return createJsonResponse(allList);
+  }
+
+  if (action === 'get_rsvps' && slug) {
+    const rsvpSheet = ss.getSheetByName(slug);
+    if (!rsvpSheet) return createJsonResponse([]);
+    
+    const rsvpData = rsvpSheet.getDataRange().getValues();
+    const filteredRSVPs = [];
+    
+    for (let i = 1; i < rsvpData.length; i++) {
+      filteredRSVPs.push({
+        name: rsvpData[i][1],
+        message: rsvpData[i][3],
+        time: rsvpData[i][0]
+      });
+    }
+    return createJsonResponse(filteredRSVPs.reverse());
+  }
+
+  if (slug) {
+    for (let i = 1; i < data.length; i++) {
+      if (data[i][0] === slug) {
+        const rowObj = {};
+        fixedKeys.forEach((key, idx) => {
+          rowObj[key] = data[i][idx] || '';
+        });
+        return createJsonResponse({ success: true, data: rowObj });
+      }
+    }
+    return createJsonResponse({ success: false, message: 'Not Found' });
+  }
+
+  return createJsonResponse({ success: false, message: 'Invalid Request' });
+}
+
+function doPost(e) {
+  let params;
+  try {
+    params = JSON.parse(e.postData.contents);
+  } catch (err) {
+    return createJsonResponse({ success: false, message: 'Invalid JSON' });
+  }
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME) || setupSheet();
+  const action = params.action;
+
+  if (action === 'submit_rsvp') {
+    const targetSlug = params.slug;
+    const rsvpSheet = ss.getSheetByName(targetSlug);
+    
+    if (!rsvpSheet) {
+      return createJsonResponse({ success: false, message: 'Halaman belum aktif atau belum disetujui admin.' });
+    }
+
+    const rsvpRow = [
+      new Date(),
+      params.name,
+      params.attendance,
+      params.message
+    ];
+    rsvpSheet.appendRow(rsvpRow);
+    return createJsonResponse({ success: true, message: 'Konfirmasi berhasil dikirim!' });
+  }
+
+  if (action === 'approve') {
+    const slug = params.slug;
+    const data = sheet.getDataRange().getValues();
+    for (let i = 1; i < data.length; i++) {
+      if (data[i][0] === slug) {
+        sheet.getRange(i + 1, 11).setValue('Approved');
+        setupIsolatedRSVPSheet(slug);
+        return createJsonResponse({ success: true, message: 'Undangan disetujui & Tab database dibuat!' });
+      }
+    }
+    return createJsonResponse({ success: false, message: 'Slug tidak ditemukan.' });
+  }
+
+  const slug = params.Slug;
+  if (!slug) return createJsonResponse({ success: false, message: 'Slug is required' });
+
+  const data = sheet.getDataRange().getValues();
+  let foundRow = -1;
+
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === slug) {
+      foundRow = i + 1;
+      break;
+    }
+  }
+
+  const rowValues = [
+    params.Slug,
+    params.GroomName,
+    params.BrideName,
+    params.Date,
+    params.Time,
+    params.LocationName,
+    params.MapURL,
+    params.GalleryURLs,
+    params.MusicURL,
+    params.RSVPData || '[]',
+    'Pending'
+  ];
+
+  if (foundRow > -1) {
+    sheet.getRange(foundRow, 1, 1, rowValues.length).setValues([rowValues]);
+  } else {
+    sheet.appendRow(rowValues);
+  }
+
+  return createJsonResponse({ success: true, message: 'Berhasil disimpan! Status saat ini: Pending.' });
+}
+
+function createJsonResponse(data) {
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function setupSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet) sheet = ss.insertSheet(SHEET_NAME);
+  
+  const headers = ['Slug', 'GroomName', 'BrideName', 'Date', 'Time', 'LocationName', 'MapURL', 'GalleryURLs', 'MusicURL', 'RSVPData', 'Status'];
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+  
+  const headerRange = sheet.getRange(1, 1, 1, headers.length);
+  headerRange.setFontWeight('bold');
+  headerRange.setBackground('#f3f3f3');
+  headerRange.setBorder(true, true, true, true, true, true);
+  return sheet;
+}
+
+function setupIsolatedRSVPSheet(slug) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(slug);
+  
+  if (!sheet) {
+    sheet = ss.insertSheet(slug);
+  } else {
+    sheet.clear();
+  }
+  
+  const headers = ['Timestamp', 'GuestName', 'Attendance', 'Message'];
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+  
+  const headerRange = sheet.getRange(1, 1, 1, headers.length);
+  headerRange.setFontWeight('bold');
+  headerRange.setBackground('#e2efda');
+  headerRange.setHorizontalAlignment('center');
+  
+  sheet.setFrozenRows(1);
+  sheet.autoResizeColumns(1, 4);
+  
+  return sheet;
+}
